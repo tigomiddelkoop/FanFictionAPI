@@ -1,6 +1,6 @@
 declare interface Story {
     title: string,
-    words: Number,
+    words: number,
     author: string,
     storyIdentifier: number,
     storyUrl: string,

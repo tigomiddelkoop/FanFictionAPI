@@ -1,5 +1,5 @@
 declare interface Chapter {
-    chapter: Number,
+    chapter: number,
     chapterName: string,
     content: string
 }
