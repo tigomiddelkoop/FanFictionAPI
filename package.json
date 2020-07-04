@@ -1,0 +1,36 @@
+{
+  "name": "fanfictionapi",
+  "version": "0.0.1",
+  "description": "NodeJS API for FanFiction",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tigomiddelkoop/FanFictionAPI.git"
+  },
+  "keywords": [
+    "fanfiction",
+    "nodejs",
+    "api"
+  ],
+  "author": "Tigo Middelkoop",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tigomiddelkoop/FanFictionAPI/issues"
+  },
+  "homepage": "https://github.com/tigomiddelkoop/FanFictionAPI#readme",
+  "devDependencies": {
+    "@types/node-fetch": "^2.5.7",
+    "typescript": "^3.9.6"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "dependencies": {
+    "node-fetch": "^2.6.0",
+    "node-html-parser": "^1.2.20"
+  }
+}
