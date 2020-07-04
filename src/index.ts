@@ -10,32 +10,49 @@ const AuthorReExp: RegExp = /(By: \d+(\.\d)*)/i
 const NumberRegExp:RegExp = /\d+(\.\d)*/;
 
 
+/*
 
-export function getStory(id: string) {
+    title: string,
+    words: Number,
+    author: string,
+    storyIdentifier: number,
+    storyUrl: string,
 
+    chapters: Array<Chapter>
+
+*/
+export async function getStory(id: string): Promise<Story> {
+
+    const storyUrl = `https://www.fanfiction.net/s/${encodeURIComponent(id)}`;
     // Get first story
-    fetch(`https://www.fanfiction.net/s/${encodeURIComponent(id)}/1`, {
+    const story = fetch(storyUrl, {
         method: "GET"
     }).then(response => response.text().then(data => {
         
-        const story
         const chapterCount = getChapterAmount(data);
-        
+
+        let story: Story = {
+            title: "",
+            words: 0,
+            author: "",
+            storyIdentifier: parseInt(id),
+            storyUrl,
+            chapters: []
+
+        }        
         const html = parse(data, {script: false});
+        story.chapters.push(getStoryContent(html));
 
 
-
-        console.log(html.innerHTML)
-        const words: any = data.match(WordRegExp);
-
-        const storyContent = html.querySelector("#storytext");
-
+        return story;
     }))
+
+    return await story;
 }
+
 
 // Retrieve the amount of stories from the Story
 function getChapterAmount(data: any): Number {
-
 
     const chapters: any = data.match(ChapterRegExp); // Get the chapter string from the whole story
     const chapterCount: any = chapters[0].match(NumberRegExp); // Retrieve number from the string.
@@ -43,8 +60,33 @@ function getChapterAmount(data: any): Number {
 
 }
 
-function getStoryContent() {
+// Get the content of a story
+/*
+
+    chapter: Number,
+    chapterName: string,
+    content: string
+
+*/
+function getStoryContent(html: any): Chapter {
+
+
+    let chapter: Chapter = {
+        chapter: 0,
+        chapterName: "",
+        content: ""
+
+    }
+
+    chapter.content = html.querySelector("#storytext");
+
+    return chapter;
+
 
 }
 
-getStory("9366635"); // TODO Delete this before publishing to NPM
+function getWords() {
+
+}
+
+getStory("9366635").then(console.log); // TODO Delete this before publishing to NPM

@@ -2,7 +2,7 @@
   "name": "fanfictionapi",
   "version": "0.0.1",
   "description": "NodeJS API for FanFiction",
-  "main": "index.js",
+  "main": "index",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
